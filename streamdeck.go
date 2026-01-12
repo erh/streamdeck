@@ -160,7 +160,7 @@ func (sd *StreamDeck) read(ctx context.Context) {
 		_, err := sd.device.Read(data)
 		if err != nil {
 			fmt.Println(err)
-			continue
+			return
 		}
 
 		debug("read data:", data)
