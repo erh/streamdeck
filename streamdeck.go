@@ -181,9 +181,13 @@ func (sd *StreamDeck) read(ctx context.Context) {
 	for ctx.Err() == nil {
 		data := make([]byte, 24)
 		_, err := sd.device.Read(data)
+		// note: when device has been closed, err will be "hid: device closed"
 		if err != nil {
 			lastErr, lastErrTime = logErrorIfNew(err, lastErr, lastErrTime)
 
+			if ctx.Err() != nil {
+				break
+			}
 			device, err := getDevice(sd.Config, sd.serial)
 			if err != nil {
 				lastReconnectionErr, lastReconnectionErrTime = logErrorIfNew(err, lastReconnectionErr, lastReconnectionErrTime)
