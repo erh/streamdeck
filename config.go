@@ -103,7 +103,17 @@ var XL = Config{
 	ImageRotate:      true,
 }
 
-var AllConfigs = []Config{Original, OriginalMk1, Original2, Plus, Mini, XL}
+var Neo = Config{
+	ProductID:        0x009a,
+	NumButtonColumns: 4,
+	NumButtonRows:    2,
+	Spacer:           38,
+	ButtonSize:       96,
+	ImageFormat:      "jpg",
+	ImageRotate:      true,
+}
+
+var AllConfigs = []Config{Original, OriginalMk1, Original2, Plus, Mini, XL, Neo}
 
 func FindConnectedConfig() (Config, bool) {
 	for _, c := range AllConfigs {
